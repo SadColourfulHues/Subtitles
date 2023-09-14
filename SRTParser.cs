@@ -195,7 +195,7 @@ public sealed class SRTParser
     #region Utilities
 
     /// <summary>
-    /// Initialises and pushes a subtitle line into the tmp subtitle span.
+    /// Initialises and pushes a subtitle line into the subtitle array.
     /// </summary>
     private void PushSubtitle(
         ref SubtitleData[] subtitles,
