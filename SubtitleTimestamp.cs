@@ -11,6 +11,9 @@ public struct SubtitleTimestamp: IFormattable
     public byte Minutes;
     public byte Seconds;
 
+    /// <summary>
+    /// Creates a new subtitle timestamp.
+    /// </summary>
     public SubtitleTimestamp(
         byte hours,
         byte minutes,
@@ -19,6 +22,16 @@ public struct SubtitleTimestamp: IFormattable
         Hours = hours;
         Minutes = minutes;
         Seconds = seconds;
+    }
+
+    /// <summary>
+    /// Seconds to subtitle timestamp.
+    /// </summary>
+    public SubtitleTimestamp(int secs)
+    {
+        Hours = Int8FromNormal(secs / 3600);
+        Minutes = Int8FromNormal(secs / 60 % 60);
+        Seconds = Int8FromNormal(secs % 60);
     }
 
     /// <summary>
@@ -42,5 +55,10 @@ public struct SubtitleTimestamp: IFormattable
     public readonly string ToString(string format, IFormatProvider formatProvider)
     {
         return $"{Hours:00}:{Minutes:00}:{Seconds:00}";
+    }
+
+    private static byte Int8FromNormal(int value)
+    {
+        return (byte) Math.Min(byte.MaxValue, value);
     }
 }
