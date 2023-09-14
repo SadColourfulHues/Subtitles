@@ -1,3 +1,5 @@
+using System;
+
 namespace SadChromaLib.Utils.Parsers;
 
 /// <summary>
@@ -37,7 +39,7 @@ public struct SubtitleTimestamp: IFormattable
         return this.AsSecs() > other.AsSecs();
     }
 
-    public readonly string ToString(string? format, IFormatProvider? formatProvider)
+    public readonly string ToString(string format, IFormatProvider formatProvider)
     {
         return $"{Hours:00}:{Minutes:00}:{Seconds:00}";
     }
