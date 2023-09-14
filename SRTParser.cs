@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Diagnostics;
 using System.Text;
+using Godot;
 
 namespace SadChromaLib.Utils.Parsers;
 
@@ -35,6 +36,24 @@ public sealed class SRTParser
         );
 
         ReadOnlySpan<char> contents = File.ReadAllText(filename);
+        return Parse(contents);
+    }
+
+    public SubtitleData[] ParseGodotFile(string path)
+    {
+        Debug.Assert(
+            condition: Godot.FileAccess.FileExists(path),
+            message: $"\"{path}\" does not exist!"
+        );
+
+        Godot.FileAccess file = Godot.FileAccess.Open(
+            path: path,
+            flags: Godot.FileAccess.ModeFlags.Read
+        );
+
+        ReadOnlySpan<char> contents = file.GetAsText();
+        file.Close();
+
         return Parse(contents);
     }
 
