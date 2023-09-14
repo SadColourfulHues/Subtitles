@@ -40,7 +40,7 @@ public readonly struct SubtitleData: IFormattable
         End = new(endHour, endMinutes, endSeconds);
     }
 
-    public string ToString(string? format, IFormatProvider formatProvider)
+    public string ToString(string format, IFormatProvider formatProvider)
     {
         return $"#{Index} {Start} to {End}:\n{Text}";
     }
