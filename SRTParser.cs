@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Diagnostics;
 using System.Text;
-using Godot;
 
 namespace SadChromaLib.Utils.Parsers;
 
@@ -39,6 +38,7 @@ public sealed class SRTParser
         return Parse(contents);
     }
 
+    #if GODOT4
     public SubtitleData[] ParseGodotFile(string path)
     {
         Debug.Assert(
@@ -56,6 +56,7 @@ public sealed class SRTParser
 
         return Parse(contents);
     }
+    #endif
 
     public SubtitleData[] Parse(ReadOnlySpan<char> text)
     {

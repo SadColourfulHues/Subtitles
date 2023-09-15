@@ -38,7 +38,7 @@ public struct SubtitleTimestamp: IFormattable
     /// Returns this timestamp as seconds.
     /// </summary>
     /// <returns></returns>
-    public readonly int AsSecs()
+    public readonly float AsSecs()
     {
         return (Hours * 3600) + (Minutes * 60) + Seconds;
     }
@@ -47,9 +47,9 @@ public struct SubtitleTimestamp: IFormattable
     /// Returns true if this is greater than 'other'.
     /// </summary>
     /// <returns></returns>
-    public readonly bool HasPassed(SubtitleTimestamp other)
+    public readonly bool HasPassed(SubtitleTimestamp other, float syncDelay = 0.0f)
     {
-        return this.AsSecs() > other.AsSecs();
+        return AsSecs() > (other.AsSecs() - syncDelay);
     }
 
     public readonly string ToString(string format, IFormatProvider formatProvider)

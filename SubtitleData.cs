@@ -40,6 +40,16 @@ public readonly struct SubtitleData: IFormattable
         End = new(endHour, endMinutes, endSeconds);
     }
 
+    public readonly bool HasStarted(SubtitleTimestamp current, float syncDelay = 0.0f)
+    {
+        return current.HasPassed(Start, syncDelay);
+    }
+
+    public readonly bool HasEnded(SubtitleTimestamp current, float syncDelay = 0.0f)
+    {
+        return current.HasPassed(End, syncDelay);
+    }
+
     public string ToString(string format, IFormatProvider formatProvider)
     {
         return $"#{Index} {Start} to {End}:\n{Text}";
